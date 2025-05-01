@@ -7,8 +7,11 @@ A FastAPI-based HTTP server that generates unique random numbers. Each number is
 - RESTful endpoint `/random` that returns unique random numbers
 - Persistent storage using SQLite
 - Numbers are never repeated, even after server restarts
+- Automatic range expansion when numbers are exhausted
+- Automatic database clearing for exhausted ranges
+- Multiple mathematical approaches for number generation
 - Built with FastAPI for high performance and automatic API documentation
-- Includes unit tests
+- Comprehensive unit tests
 
 ## Installation
 
@@ -43,16 +46,30 @@ pytest
 
 ## Design Considerations
 
+### Range Management
+- Default range: -1,000,000 to 1,000,000
+- Automatic range expansion when exhausted
+- Automatic database clearing for exhausted ranges
+- Multiple expansion attempts before full reset
+
+### Number Generation
+- Multiple mathematical approaches for generating numbers
+- Automatic method shuffling for better distribution
+- Support for both positive and negative numbers
+- Efficient uniqueness checking
+
 ### Scalability
 - Uses SQLite for persistence (can be easily swapped with PostgreSQL for higher scale)
 - Implements efficient number generation and tracking
 - Handles concurrent requests safely
+- Automatic database maintenance
 
 ### Future Improvements
 1. Switch to PostgreSQL for higher concurrency
 2. Implement number range partitioning for distributed systems
 3. Add caching layer for frequently accessed ranges
 4. Implement batch number pre-generation for better performance
+5. Add monitoring for range exhaustion patterns
 
 ## API Response Format
 
@@ -60,4 +77,10 @@ pytest
 {
     "number": 42
 }
-``` 
+```
+
+## Error Handling
+
+The API will return appropriate HTTP status codes:
+- 200: Successfully generated a unique number
+- 503: Service temporarily unavailable (when all ranges are exhausted and being reset) 

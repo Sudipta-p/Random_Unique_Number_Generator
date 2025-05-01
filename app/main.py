@@ -16,6 +16,8 @@ app = FastAPI(
 def get_random_number(db: Session = Depends(database.get_db)):
     """
     Get a unique random number that has never been returned before.
+    The number will be generated using various mathematical functions and strategies
+    to ensure uniqueness and handle exhausted ranges.
     """
     service = services.NumberGeneratorService(db)
     number = service.generate_unique_number()
