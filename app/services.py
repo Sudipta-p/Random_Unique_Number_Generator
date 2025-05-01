@@ -77,4 +77,4 @@ class NumberGeneratorService:
             random_float = random.random()
             return round(random_float, precision)
         else:
-            raise ValueError("number_type must be either 'int' or 'float'") 
+            raise ValueError("number_type must be either 'int' or 'float'")
