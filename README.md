@@ -15,10 +15,12 @@ A FastAPI-based HTTP server that generates unique random numbers. Each number is
 
 ## Installation
 
-1. Create a virtual environment:
+1. Clone Repo & Set Up Environment:
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+git clone https://github.com/Sudipta-p/Random_Unique_Number_Generator.git
+cd Random_Unique_Number_Generator
+python -m venv myenv
+source myenv/bin/activate  # or myenv\Scripts\activate (Windows)
 ```
 
 2. Install dependencies:
